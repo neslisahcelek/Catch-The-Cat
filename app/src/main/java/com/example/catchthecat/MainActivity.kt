@@ -2,6 +2,7 @@ package com.example.catchthecat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     var handler: Handler = Handler()
 
     var score=0
-    var time=5
+    var time=5000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,22 +27,19 @@ class MainActivity : AppCompatActivity() {
         binding.textViewScore.text="Score: ${++score}"
     }
     fun time(){
-        time=5
+        time=5000
         score=0
         binding.textViewScore.text="Score: $score"
-        runnable = object : Runnable{
-            override fun run() {
-                binding.textViewTime.text="Time: $time"
-                if (time==0){
-                    alert()
-                }
-                else{
-                    time-=1
-                    handler.postDelayed(this,1000)
-                }
+        binding.textViewTime.text="Time: ${time/1000}"
+        object :CountDownTimer(time.toLong(),1000){
+            override fun onTick(millisUntilFinished: Long) {
+                binding.textViewTime.text="Time: ${millisUntilFinished/1000}"
             }
-        }
-        handler.post(runnable)
+
+            override fun onFinish() {
+                alert()
+            }
+        }.start()
     }
     fun alert(){
         val alert=AlertDialog.Builder(this)
