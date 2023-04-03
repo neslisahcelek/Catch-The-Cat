@@ -46,13 +46,18 @@ class MainActivity : AppCompatActivity() {
         alert.setMessage("Restart the game?")
         alert.setNegativeButton("No"){dialog, which ->
             Toast.makeText(applicationContext,"Game over.",Toast.LENGTH_LONG).show()
+            binding.buttonRestart.visibility=View.VISIBLE
         }
         alert.setPositiveButton("Yes"){dialog, which ->
-            time=20
+            time=5
             score=0
             time()
         }
         alert.show()
+    }
+    fun restart(view: View){
+        time=5
+        time()
     }
 
 }
