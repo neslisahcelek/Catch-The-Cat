@@ -26,14 +26,17 @@ class MainActivity : AppCompatActivity() {
         binding.textViewScore.text="Score: ${++score}"
     }
     fun time(){
+        time=5
+        score=0
+        binding.textViewScore.text="Score: $score"
         runnable = object : Runnable{
             override fun run() {
-                time-=1
                 binding.textViewTime.text="Time: $time"
                 if (time==0){
                     alert()
                 }
                 else{
+                    time-=1
                     handler.postDelayed(this,1000)
                 }
             }
@@ -49,14 +52,12 @@ class MainActivity : AppCompatActivity() {
             binding.buttonRestart.visibility=View.VISIBLE
         }
         alert.setPositiveButton("Yes"){dialog, which ->
-            time=5
-            score=0
             time()
         }
         alert.show()
     }
     fun restart(view: View){
-        time=5
+        binding.buttonRestart.visibility=View.INVISIBLE
         time()
     }
 
