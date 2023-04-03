@@ -6,7 +6,6 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.catchthecat.databinding.ActivityMainBinding
 import java.util.Random
@@ -21,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     var time=25000
 
     val catList = ArrayList<ImageView>()
+    var index=5
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,17 +50,18 @@ class MainActivity : AppCompatActivity() {
             cat.visibility=View.INVISIBLE
         }
         val random = Random()
-        var index = random.nextInt(16)
+        index = random.nextInt(16)
             runnable = object : Runnable{
             override fun run() {
                 catList.get(index).visibility=View.INVISIBLE
                 index = random.nextInt(16)
                 catList.get(index).visibility=View.VISIBLE
-                handler.postDelayed(this,1000)
+                handler.postDelayed(this,500)
             }
         }
         handler.post(runnable)
     }
+    //score arttıkça hızı azalt
     fun increaseScore(view:View){
         binding.textViewScore.text="Score: ${++score}"
     }
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onFinish() {
                 handler.removeCallbacks(runnable)
+                catList.get(index).visibility=View.INVISIBLE
                 alert()
             }
         }.start()
