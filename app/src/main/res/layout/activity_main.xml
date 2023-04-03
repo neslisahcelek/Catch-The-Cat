@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Time: 0"
-            android:onClick="time"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -31,7 +30,6 @@
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:hint="Score: 0"
-            android:onClick="score"
             android:textAlignment="center"
             android:textSize="25sp" />
     </LinearLayout>
@@ -40,7 +38,7 @@
         android:id="@+id/imageViewCat"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="moveCat"
+        android:onClick="increaseScore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
