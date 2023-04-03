@@ -27,15 +27,12 @@ class MainActivity : AppCompatActivity() {
         binding.textViewScore.text="Score: ${++score}"
     }
     fun time(){
-        time=5000
-        score=0
         binding.textViewScore.text="Score: $score"
         binding.textViewTime.text="Time: ${time/1000}"
         object :CountDownTimer(time.toLong(),1000){
             override fun onTick(millisUntilFinished: Long) {
                 binding.textViewTime.text="Time: ${millisUntilFinished/1000}"
             }
-
             override fun onFinish() {
                 alert()
             }
@@ -50,13 +47,17 @@ class MainActivity : AppCompatActivity() {
             binding.buttonRestart.visibility=View.VISIBLE
         }
         alert.setPositiveButton("Yes"){dialog, which ->
-            time()
+            val intent = intent
+            finish()
+            startActivity(intent)
         }
         alert.show()
     }
     fun restart(view: View){
         binding.buttonRestart.visibility=View.INVISIBLE
-        time()
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 
 }
