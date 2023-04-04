@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.catchthecat.databinding.ActivityMainBinding
 import java.util.Random
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     var handler: Handler = Handler()
 
     var score=0
-    var time=25000
+    var time=10000
 
     val catList = ArrayList<ImageView>()
     var index=5
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         alert.setTitle("Time is Over!")
         alert.setMessage("Restart the game?")
         alert.setNegativeButton("No"){dialog, which ->
-            //Toast.makeText(applicationContext,"Game over.",Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Game over.", Toast.LENGTH_LONG).show()
             binding.buttonRestart.visibility=View.VISIBLE
         }
         alert.setPositiveButton("Yes"){dialog, which ->
